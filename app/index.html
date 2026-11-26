@@ -218,7 +218,7 @@
         </div>
 
         <div class="card">
-          <div class="card-top"><span class="label">The log</span><span class="date">7 check-ins</span></div>
+          <div class="card-top"><span class="label">The log</span><span class="date" id="logCount">8 check-ins</span></div>
           <p class="month">November 2026</p>
           <div class="entry fresh on" id="entry">
             <span class="day">26<small>NOV</small></span>
@@ -287,8 +287,9 @@
     var stamp = document.getElementById('stamp');
     var btn = document.getElementById('checkinBtn');
     var entry = document.getElementById('entry');
+    var logCount = document.getElementById('logCount');
     var steps = document.querySelectorAll('.steps li');
-    if (!typed || !typedBox || !meter || !stamp || !btn || !entry || !steps.length) return;
+    if (!typed || !typedBox || !meter || !stamp || !btn || !entry || !logCount || !steps.length) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     function active(n) {
@@ -315,11 +316,12 @@
       btn.style.opacity = '';
       btn.classList.remove('off');
       entry.classList.remove('on');
+      logCount.textContent = '7 check-ins';
       active(1);
 
       setTimeout(type, 500);
       setTimeout(function () { active(2); btn.classList.add('off'); stamp.classList.add('on'); meter.style.width = '17%'; }, 2200);
-      setTimeout(function () { active(3); entry.classList.add('on'); }, 3800);
+      setTimeout(function () { active(3); entry.classList.add('on'); logCount.textContent = '8 check-ins'; }, 3800);
       setTimeout(play, 9000);
     }
 
