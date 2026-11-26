@@ -79,6 +79,56 @@
   .foot a { color: var(--mute); text-decoration: none; }
   .foot a:hover, .foot a:focus { color: var(--paper); text-decoration: underline; }
 
+  /* How it works */
+  .how { margin: 88px auto 0; }
+  .how-head { text-align: center; }
+  .how-head h2 { font-size: clamp(30px, 4.2vw, 44px); margin: 14px 0 0; }
+
+  .how-panel { margin-top: 34px; display: grid; grid-template-columns: 258px 1fr; gap: 1px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.08); border-radius: 22px; overflow: hidden; }
+
+  .steps { list-style: none; margin: 0; padding: 22px 20px; background: #101012; display: flex; flex-direction: column; justify-content: center; gap: 2px; }
+  .steps li { display: flex; gap: 11px; align-items: baseline; padding: 12px 12px 13px; border-radius: 12px; color: var(--faint); font-size: 14px; line-height: 1.45; transition: color .35s ease, background .35s ease; }
+  .steps li .num { font-size: 10px; font-weight: 700; letter-spacing: .16em; }
+  .steps li.on { color: var(--paper); background: rgba(255,255,255,.06); }
+
+  .stage { background: #0b0b0d; padding: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: stretch; }
+  .card { background: #131316; border: 1px solid rgba(255,255,255,.09); border-radius: 16px; padding: 18px; display: flex; flex-direction: column; }
+  .card-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+  .card-top .date { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--faint); }
+
+  .typed { margin: 16px 0 12px; font-size: 16px; line-height: 1.45; min-height: 2.9em; color: var(--paper); }
+  .caret { display: inline-block; width: 2px; height: 1.05em; margin-left: 2px; vertical-align: -2px; background: var(--paper); opacity: 0; }
+  .typed.typing .caret { opacity: 1; animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .meter { height: 3px; border-radius: 2px; background: rgba(255,255,255,.1); overflow: hidden; }
+  .meter span { display: block; height: 100%; width: 0; border-radius: 2px; background: #e9e7e1; transition: width .5s ease; }
+
+  .slot { margin-top: auto; padding-top: 22px; display: grid; }
+  .slot > * { grid-area: 1 / 1; justify-self: start; align-self: center; }
+
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 9px 18px 10px; border-radius: 10px; background: var(--paper); color: var(--ink); font-size: 13px; font-weight: 700; letter-spacing: -.005em; transition: opacity .35s ease, transform .35s ease; }
+  .btn.off { opacity: 0; transform: translateY(5px); }
+
+  .stamp { display: inline-flex; align-items: center; gap: 7px; padding: 6px 12px 7px; border: 1px solid rgba(255,255,255,.14); border-radius: 999px; font-size: 11.5px; letter-spacing: .03em; color: #d8d8d4; opacity: 0; transform: translateY(6px); transition: opacity .45s ease, transform .45s ease; }
+  .stamp.on { opacity: 1; transform: none; }
+  .stamp.off { opacity: 0; transform: translateY(5px); }
+  .stamp svg { width: 13px; height: 13px; flex: none; }
+
+  .month { margin: 16px 0 8px; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--faint); }
+  .entry { display: grid; grid-template-columns: 32px 1fr; gap: 12px; padding: 8px 0 12px; border-bottom: 1px solid rgba(255,255,255,.07); }
+  .entry.prior { opacity: .38; }
+  .entry.fresh { display: none; }
+  .entry.fresh.on { display: grid; animation: land .45s ease both; }
+  @keyframes land { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  .day { font-family: "Abril Fatface", Georgia, serif; font-size: 22px; line-height: 1; color: var(--paper); }
+  .day small { display: block; font-family: Arial, Helvetica, sans-serif; font-size: 9px; letter-spacing: .16em; color: var(--faint); margin-top: 5px; }
+  .entry p { margin: 0; }
+  .entry-text { font-size: 14px; line-height: 1.42; color: #e6e6e1; }
+  .entry-time { margin-top: 6px !important; font-size: 9.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--faint); }
+  .ghost { height: 30px; margin-top: 12px; border-radius: 8px; background: rgba(255,255,255,.035); }
+  .ghost.short { width: 64%; }
+
   a:focus-visible, .badge-link:focus-visible { outline: 2px solid #e9e7e1; outline-offset: 4px; border-radius: 4px; }
 
   @media (max-width: 760px) {
@@ -87,6 +137,11 @@
     .phones img { min-width: 0; }
     .phones img:last-child { display: none; }
     .phones img:first-child { max-width: 250px; }
+    .how { margin-top: 64px; }
+    .how-panel { grid-template-columns: 1fr; }
+    .steps { padding: 14px 14px; }
+    .steps li { padding: 9px 10px 10px; font-size: 13px; }
+    .stage { grid-template-columns: 1fr; padding: 16px; gap: 12px; }
     .features { grid-template-columns: 1fr; margin-top: 64px; }
     .quiet { max-width: none; }
     .quiet { margin-top: 64px; padding: 48px 24px; }
@@ -135,6 +190,57 @@
     </div>
   </section>
 
+  <section class="how wrap" aria-labelledby="how-title">
+    <div class="how-head">
+      <p class="label">How it works</p>
+      <h2 id="how-title" class="display">Nine seconds a day.</h2>
+    </div>
+
+    <div class="how-panel">
+      <ol class="steps">
+        <li data-step="1" class="on"><span class="num">01</span> Write one line about today</li>
+        <li data-step="2"><span class="num">02</span> It's stamped with the date and time</li>
+        <li data-step="3"><span class="num">03</span> It's kept in the month's log</li>
+      </ol>
+
+      <div class="stage" aria-hidden="true">
+        <div class="card">
+          <div class="card-top"><span class="label">Today</span><span class="date">Nov 26</span></div>
+          <p class="typed"><span id="typedText">Walked the long way home.</span><span class="caret"></span></p>
+          <div class="meter"><span id="meterBar" style="width:17%"></span></div>
+          <div class="slot">
+            <span class="btn off" id="checkinBtn">Check in</span>
+            <div class="stamp on" id="stamp">
+              <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="6.2" stroke="#cfcfc9" stroke-width="1.2"/><path d="M4.2 7.2l1.9 1.9 3.6-3.9" stroke="#cfcfc9" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Checked in · 9:12 AM
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top"><span class="label">The log</span><span class="date">7 check-ins</span></div>
+          <p class="month">November 2026</p>
+          <div class="entry fresh on" id="entry">
+            <span class="day">26<small>NOV</small></span>
+            <div>
+              <p class="entry-text">Walked the long way home.</p>
+              <p class="entry-time">Nov 26, 2026 · 9:12 AM</p>
+            </div>
+          </div>
+          <div class="entry prior">
+            <span class="day">25<small>NOV</small></span>
+            <div>
+              <p class="entry-text">Finished the book I've been carrying around for a month.</p>
+              <p class="entry-time">Nov 25, 2026 · 6:07 PM</p>
+            </div>
+          </div>
+          <div class="ghost"></div>
+          <div class="ghost short"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="features wrap">
     <article>
       <p class="label">The habit</p>
@@ -171,6 +277,55 @@
     </a>
   </section>
 </main>
+
+<script>
+  (function () {
+    var sentence = 'Walked the long way home.';
+    var typed = document.getElementById('typedText');
+    var typedBox = typed && typed.closest('.typed');
+    var meter = document.getElementById('meterBar');
+    var stamp = document.getElementById('stamp');
+    var btn = document.getElementById('checkinBtn');
+    var entry = document.getElementById('entry');
+    var steps = document.querySelectorAll('.steps li');
+    if (!typed || !typedBox || !meter || !stamp || !btn || !entry || !steps.length) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    function active(n) {
+      for (var i = 0; i < steps.length; i++) {
+        steps[i].classList.toggle('on', steps[i].getAttribute('data-step') === String(n));
+      }
+    }
+
+    function type() {
+      var i = 0;
+      typedBox.classList.add('typing');
+      (function tick() {
+        typed.textContent = sentence.slice(0, ++i);
+        if (i < sentence.length) setTimeout(tick, 42);
+        else setTimeout(function () { typedBox.classList.remove('typing'); }, 900);
+      })();
+    }
+
+    function play() {
+      typed.textContent = '';
+      typedBox.classList.remove('typing');
+      meter.style.width = '0%';
+      stamp.classList.remove('on');
+      btn.style.opacity = '';
+      btn.classList.remove('off');
+      entry.classList.remove('on');
+      active(1);
+
+      setTimeout(type, 500);
+      setTimeout(function () { active(2); btn.classList.add('off'); stamp.classList.add('on'); meter.style.width = '17%'; }, 2200);
+      setTimeout(function () { active(3); entry.classList.add('on'); }, 3800);
+      setTimeout(play, 9000);
+    }
+
+    play();
+  })();
+</script>
 
 <footer>
   <div class="wrap foot">
