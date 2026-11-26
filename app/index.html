@@ -72,11 +72,16 @@
   .life-sub { margin: 10px 0 0; font-size: 11.5px; color: var(--faint); }
 
   .life-switch { display: flex; gap: 4px; padding: 4px; margin: 18px 0 20px; border: 1px solid rgba(255,255,255,.09); border-radius: 999px; background: #0d0d0f; }
-  .life-switch span { flex: 1; text-align: center; padding: 7px 0; font-size: 10.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--faint); border-radius: 999px; }
-  .life-switch span.on { background: #232327; color: var(--paper); }
+  .life-switch button { flex: 1; padding: 7px 0; border: 0; border-radius: 999px; background: none; font: inherit; font-size: 10.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--faint); cursor: pointer; transition: color .25s ease, background .25s ease; }
+  .life-switch button:hover { color: var(--mute); }
+  .life-switch button.on { background: #232327; color: var(--paper); }
+  .life-switch button:focus-visible { outline: 2px solid #e9e7e1; outline-offset: 2px; }
 
-  .life-chart { display: block; width: 100%; height: auto; }
-  .life-scale { display: flex; justify-content: space-between; margin-top: 8px; font-size: 9px; font-weight: 700; letter-spacing: .1em; color: var(--faint); }
+  .life-grid { position: relative; height: 240px; margin-top: 4px; }
+  .life-grid svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .life-legend { margin: 10px 0 0; font-size: 9.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--faint); }
+  .life-bar { height: 6px; border-radius: 3px; background: rgba(255,255,255,.08); overflow: hidden; margin-top: 10px; }
+  .life-bar span { display: block; height: 100%; width: 46%; background: var(--paper); }
 
   /* Features */
   .features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.08); border-radius: 22px; overflow: hidden; margin: 96px auto 0; }
@@ -290,144 +295,20 @@
     <div class="life-copy">
       <p class="label">New in 1.1</p>
       <h2 id="life-title" class="display">Your days, charted.</h2>
-      <p>Add your birthday and how long you expect to live. Fograph counts the days, weeks and months you've lived and charts them year by year — solid for what you've walked, faint for what's ahead.</p>
+      <p>Add your birthday and how long you expect to live. Fograph counts the days, weeks and months you've lived and lays them out a square at a time — solid for what you've walked, faint for what's ahead.</p>
       <p class="life-note">Your birthday and lifespan stay on your device, like everything else here.</p>
     </div>
 
-    <div class="life-card" role="img" aria-label="Life so far: 13,478 of 29,240 days lived — 46 percent of an 80 year life, charted one bar per year of life.">
+    <div class="life-card" role="img" aria-label="Life so far: 1,919 of 4,174 weeks lived — 46 percent of an 80 year life, one square per week.">
       <div class="life-top"><span class="label">Life so far</span><span class="life-pct">46%</span></div>
-      <div class="life-big"><span class="num display">13,478</span><span class="unit">days</span></div>
-      <p class="life-sub">of 29,240 days in 80 years</p>
+      <div class="life-big"><span class="num display">1,919</span><span class="unit">weeks</span></div>
+      <p class="life-sub">of 4,174 weeks in 80 years</p>
 
-      <div class="life-switch"><span class="on">Days</span><span>Weeks</span><span>Months</span></div>
+      <div class="life-switch" role="group" aria-label="Life counter unit"><button type="button" data-unit="days">Days</button><button type="button" class="on" data-unit="weeks">Weeks</button><button type="button" data-unit="months">Months</button></div>
 
-      <svg class="life-chart" viewBox="0 0 640 112" aria-hidden="true">
-        <rect x="0" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="0" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="8" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="8" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="16" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="16" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="24" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="24" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="32" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="32" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="40" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="40" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="48" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="48" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="56" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="56" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="64" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="64" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="72" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="72" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="80" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="80" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="80" y="0" width="1" height="112" fill="#131316"/>
-        <rect x="88" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="88" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="96" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="96" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="104" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="104" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="112" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="112" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="120" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="120" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="128" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="128" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="136" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="136" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="144" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="144" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="152" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="152" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="160" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="160" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="160" y="0" width="1" height="112" fill="#131316"/>
-        <rect x="168" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="168" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="176" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="176" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="184" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="184" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="192" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="192" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="200" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="200" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="208" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="208" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="216" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="216" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="224" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="224" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="232" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="232" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="240" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="240" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="240" y="0" width="1" height="112" fill="#131316"/>
-        <rect x="248" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="248" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="256" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="256" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="264" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="264" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="272" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="272" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="280" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="280" y="0.0" width="8" height="112.0" fill="#f3f3f0"/>
-        <rect x="288" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="288" y="18.7" width="8" height="93.3" fill="#f3f3f0"/>
-        <rect x="296" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="304" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="312" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="320" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="320" y="0" width="1" height="112" fill="#131316"/>
-        <rect x="328" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="336" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="344" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="352" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="360" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="368" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="376" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="384" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="392" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="400" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="400" y="0" width="1" height="112" fill="#131316"/>
-        <rect x="408" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="416" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="424" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="432" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="440" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="448" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="456" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="464" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="472" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="480" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="480" y="0" width="1" height="112" fill="#131316"/>
-        <rect x="488" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="496" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="504" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="512" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="520" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="528" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="536" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="544" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="552" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="560" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="560" y="0" width="1" height="112" fill="#131316"/>
-        <rect x="568" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="576" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="584" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="592" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="600" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="608" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="616" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="624" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-        <rect x="632" y="0" width="8" height="112" fill="#ffffff" opacity=".06"/>
-      </svg>
-      <div class="life-scale"><span>0</span><span>20</span><span>40</span><span>60</span><span>80</span></div>
+      <div class="life-grid" id="lifeGrid" aria-hidden="true"></div>
+      <p class="life-legend" id="lifeLegend">Each square is a week.</p>
+      <noscript><div class="life-bar"><span></span></div></noscript>
     </div>
   </section>
 
@@ -507,5 +388,111 @@
   </div>
 </footer>
 
+
+<script>
+  (function () {
+    var card = document.querySelector('.life-card');
+    var grid = document.getElementById('lifeGrid');
+    var legend = document.getElementById('lifeLegend');
+    var pct = document.querySelector('.life-pct');
+    var num = document.querySelector('.life-big .num');
+    var unitEl = document.querySelector('.life-big .unit');
+    var sub = document.querySelector('.life-sub');
+    var buttons = document.querySelectorAll('.life-switch button');
+    if (!card || !grid || !legend || !pct || !num || !unitEl || !sub || !buttons.length) return;
+
+    var UNITS = {
+      days:   { lived: 13478, total: 29240, noun: 'days' },
+      weeks:  { lived: 1919,  total: 4174,  noun: 'weeks' },
+      months: { lived: 442,   total: 960,   noun: 'months' }
+    };
+    var current = 'weeks';
+    var drawn = false;
+
+    function fmt(n) { return n.toLocaleString('en-US'); }
+    function singular(noun) { return noun.replace(/s$/, ''); }
+    function percent(u) { return Math.round(u.lived / u.total * 100); }
+
+    function draw(unit) {
+      var u = UNITS[unit];
+      var W = grid.clientWidth;
+      var H = grid.clientHeight;
+      if (!W || !H) return;
+
+      // Largest whole-pixel square that fits N cells in the box, so nothing
+      // lands on a half pixel and blurs into a grey haze.
+      var gap = 1;
+      var shape = null;
+      for (var size = 12; size >= 1; size--) {
+        var c = Math.floor((W + gap) / (size + gap));
+        if (c < 1) continue;
+        var r = Math.ceil(u.total / c);
+        var h = r * (size + gap) - gap;
+        if (h <= H) { shape = { size: size, cols: c, rows: r, w: c * (size + gap) - gap, h: h }; break; }
+      }
+      if (!shape) {
+        var c2 = Math.max(1, Math.floor(W));
+        var r2 = Math.ceil(u.total / c2);
+        shape = { size: 1, cols: c2, rows: r2, w: c2, h: r2 };
+      }
+
+      var step = shape.size + gap;
+      var ox = Math.round((W - shape.w) / 2);
+      var oy = Math.round((H - shape.h) / 2);
+      var lived = [];
+      var ahead = [];
+
+      for (var i = 0; i < u.total; i++) {
+        var x = ox + (i % shape.cols) * step;
+        var y = oy + Math.floor(i / shape.cols) * step;
+        var d = 'M' + x + ' ' + y + 'h' + shape.size + 'v' + shape.size + 'h-' + shape.size + 'z';
+        if (i < u.lived) lived.push(d); else ahead.push(d);
+      }
+
+      grid.innerHTML = '<svg aria-hidden="true" shape-rendering="crispEdges"><path d="' + ahead.join('') +
+        '" fill="#ffffff" fill-opacity="0.08"/><path d="' + lived.join('') + '" fill="#f3f3f0"/></svg>';
+    }
+
+    function render(unit, force) {
+      var u = UNITS[unit];
+      current = unit;
+      num.textContent = fmt(u.lived);
+      unitEl.textContent = u.noun;
+      pct.textContent = percent(u) + '%';
+      sub.textContent = 'of ' + fmt(u.total) + ' ' + u.noun + ' in 80 years';
+      legend.textContent = 'Each square is a ' + singular(u.noun) + '.';
+      card.setAttribute('aria-label', 'Life so far: ' + fmt(u.lived) + ' of ' + fmt(u.total) + ' ' + u.noun +
+        ' lived — ' + percent(u) + ' percent of an 80 year life, one square per ' + singular(u.noun) + '.');
+      for (var i = 0; i < buttons.length; i++) {
+        buttons[i].classList.toggle('on', buttons[i].getAttribute('data-unit') === unit);
+      }
+      if (drawn || force) { drawn = true; draw(unit); }
+    }
+
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].addEventListener('click', function () {
+        render(this.getAttribute('data-unit'), true);
+      });
+    }
+
+    var timer;
+    window.addEventListener('resize', function () {
+      clearTimeout(timer);
+      timer = setTimeout(function () { if (drawn) draw(current); }, 150);
+    });
+
+    render(current, false);
+
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) { drawn = true; draw(current); io.disconnect(); }
+      }, { rootMargin: '300px' });
+      io.observe(grid);
+    } else {
+      drawn = true;
+      draw(current);
+    }
+  })();
+</script>
 </body>
 </html>
